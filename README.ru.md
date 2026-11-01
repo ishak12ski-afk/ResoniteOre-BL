@@ -37,12 +37,12 @@ manifest.json
 content/
   main.js
   Common/
-    Players/          Ускорение и рывок по двойному нажатию
-    Systems/          Логика генерации руды
+    Players/
+    Systems/
   Content/
-    Items/            Руда, слитки, инструменты и меч
-    Projectiles/      Резонансная волна
-    Tiles/            Блок резонитовой руды
+    Items/
+    Projectiles/
+    Tiles/
   Localization/
     en-US.json
     ru-RU.json
