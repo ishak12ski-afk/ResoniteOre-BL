@@ -1,0 +1,29 @@
+{
+  "uid": "1e61177f-f524-4d1c-ae96-6297c90d1ff0",
+  "id": "resoniteore",
+  "name": "Resonite Mod",
+  "localizedNames": {
+    "ru-RU": "Резонитовый мод",
+    "en-US": "Resonite Mod"
+  },
+  "version": "1.5.2",
+  "authors": [
+    {
+      "name": "ResoniteOre team",
+      "role": "Original TL Pro mod; Bunny Loader port"
+    }
+  ],
+  "category": "Items",
+  "summary": "Resonite ore after Eater of Worlds/Brain of Cthulhu, tools, sword with wave, running speed boost and dash.",
+  "localizedSummaries": {
+    "ru-RU": "Резонитовая руда после победы над Пожирателем миров или Мозгом Ктулху, инструменты, меч с волной и ускорение с рывком.",
+    "en-US": "Resonite ore after Eater of Worlds/Brain of Cthulhu, tools, sword wave, movement speed and dash."
+  },
+  "blVersion": 2,
+  "gameVersion": [
+    301720,
+    301720
+  ],
+  "entry": "main.js",
+  "dependencies": []
+}

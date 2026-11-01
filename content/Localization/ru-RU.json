@@ -1,0 +1,24 @@
+{
+  "CustomText": {
+    "ResoniteAppeared": "Осколки побеждённого зла впитались в камень... В мире появился резонит!"
+  },
+  "ItemName": {
+    "ResoniteOre": "Резонитовая руда",
+    "ResonitePickaxe": "Резонитовая кирка",
+    "ResoniteAxe": "Резонитовый топор",
+    "ResoniteSword": "Резонитовый меч",
+    "ResoniteBar": "Резонитовый слиток",
+    "ResoniteHammer": "Резонитовый молот"
+  },
+  "ItemTooltip": {
+    "ResoniteOre": "Пульсирует остаточной энергией зла",
+    "ResonitePickaxe": "75% мощности кирки\\nМожет добывать адский камень",
+    "ResoniteAxe": "110% мощности топора",
+    "ResoniteSword": "Каждый второй взмах выпускает резонансный срез",
+    "ResoniteBar": "Спрессованный резонит, гудящий от остаточной энергии",
+    "ResoniteHammer": "80% мощности молота"
+  },
+  "ProjectileName": {
+    "ResoniteWave": "Резонансный срез"
+  }
+}

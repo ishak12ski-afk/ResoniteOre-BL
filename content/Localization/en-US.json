@@ -1,0 +1,24 @@
+{
+  "CustomText": {
+    "ResoniteAppeared": "Shards of defeated evil sank into the stone... Resonite has appeared in the world!"
+  },
+  "ItemName": {
+    "ResoniteOre": "Resonite Ore",
+    "ResonitePickaxe": "Resonite Pickaxe",
+    "ResoniteAxe": "Resonite Axe",
+    "ResoniteSword": "Resonite Sword",
+    "ResoniteBar": "Resonite Bar",
+    "ResoniteHammer": "Resonite Hammer"
+  },
+  "ItemTooltip": {
+    "ResoniteOre": "Pulses with the fading energy of evil",
+    "ResonitePickaxe": "75% pickaxe power\\nCan mine Hellstone",
+    "ResoniteAxe": "110% axe power",
+    "ResoniteSword": "Every second swing releases a resonant slash",
+    "ResoniteBar": "Compressed resonite humming with residual energy",
+    "ResoniteHammer": "80% hammer power"
+  },
+  "ProjectileName": {
+    "ResoniteWave": "Resonant Slash"
+  }
+}
