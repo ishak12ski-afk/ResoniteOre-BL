@@ -37,12 +37,12 @@ manifest.json
 content/
   main.js
   Common/
-    Players/          Bonus de déplacement et ruée par double appui
-    Systems/          Logique de génération du minerai
+    Players/
+    Systems/
   Content/
-    Items/            Minerai, lingots, outils et épée
-    Projectiles/      Onde de résonance
-    Tiles/            Bloc de minerai de résonite
+    Items/
+    Projectiles/
+    Tiles/
   Localization/
     en-US.json
     ru-RU.json
