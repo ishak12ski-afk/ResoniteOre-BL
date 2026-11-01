@@ -1,6 +1,6 @@
 # ResoniteOre
 
-**Language:** English | [Русский](README.ru.md)
+**Language:** English | [Русский](README.ru.md) | [Português](README.pt.md) | [Français](README.fr.md)
 
 ResoniteOre is a Terraria Mobile mod built for [Bunny Loader](https://github.com/JonataOliveiraa/Bunny-Loader). It adds a new underground resource, a set of tools and a sword, and new movement abilities.
 
