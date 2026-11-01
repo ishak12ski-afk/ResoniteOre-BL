@@ -1,50 +1,63 @@
-# 💎 ResoniteOre — резонитовый мод для Terraria
+# ResoniteOre
 
-**ResoniteOre** — мод для **Terraria Mobile** на платформе **[Bunny Loader](https://github.com/JonataOliveiraa/Bunny-Loader)**. Добавляет новую руду — **резонит**, снаряжение из неё и новые возможности передвижения.
+**Language:** English | [Русский](README.ru.md)
 
-> **Текущая версия:** 1.5.2 (порт для Bunny Loader API v2). Мод перенесён с TL Pro. Некоторые механики ещё проходят тестирование в самой игре.
+ResoniteOre is a Terraria Mobile mod built for [Bunny Loader](https://github.com/JonataOliveiraa/Bunny-Loader). It adds a new underground resource, a set of tools and a sword, and new movement abilities.
 
-## ⛏️ Что добавляет мод
+**Current version:** 1.5.2  
+**Platform:** Terraria Mobile, Bunny Loader API v2  
+**Status:** Work in progress. Some features have not yet been verified in-game.
 
-- **Резонитовая руда** — появляется под землёй после победы над **Пожирателем миров** или **Мозгом Ктулху**. Система рассчитана и на ранее созданные миры.
-- **Резонитовые слитки** — переплавка руды в печи для создания снаряжения.
-- **Резонитовая кирка** — 75% мощности.
-- **Резонитовый топор** — 110% мощности.
-- **Резонитовый молот** — 80% мощности.
-- **Резонитовый меч** — каждый второй взмах выпускает резонансную волну, которая летит вперёд, замедляется и исчезает.
-- **Ускорение персонажа** — +20% скорости передвижения.
-- **Рывок влево/вправо** — **двойное быстрое нажатие** соответствующей кнопки движения, как у щита Ктулху (окно ~0,42 с; перезарядка ~0,58 с).
+## Features
 
-В моде есть **русская и английская локализации**.
+- **Resonite ore:** Intended to generate underground after defeating the Eater of Worlds or Brain of Cthulhu, including in existing worlds.
+- **Resonite bars:** Smelted from the ore and used to craft equipment.
+- **Resonite pickaxe:** 75% pickaxe power.
+- **Resonite axe:** 110% axe power.
+- **Resonite hammer:** 80% hammer power.
+- **Resonite sword:** Every second swing sends out a resonance wave.
+- **Movement boost:** Increases movement speed by 20%.
+- **Dash:** Double-tap left or right to dash in that direction, similar to the Shield of Cthulhu. The current implementation uses an approximately 0.42-second double-tap window and a 0.58-second cooldown.
 
-## 📥 Установка
+The mod includes both English and Russian in-game localization.
 
-1. Установите совместимую версию **Bunny Loader** для Terraria Mobile.
-2. Скачайте [**ResoniteOre 1.5.2 (.bl)**](dist/ResoniteOre_1-5-2_BunnyLoader.bl) из этого репозитория.
-3. Импортируйте `.bl` через меню пакетов Bunny Loader.
-4. Включите мод и перезапустите/загрузите мир.
+## Installation
 
-**Важно:** оригинальные сохранения модов TL Pro не конвертируются автоматически в Bunny Loader. При переносе мира сохраняйте сопутствующие файлы Bunny Loader (`*.wld.tiles.bl` и `*.wld.bl.json`), если они есть.
+1. Install a version of Bunny Loader compatible with your Terraria Mobile version.
+2. Get the mod's `.bl` archive, if you already have a packaged build. To package the repository source yourself, put `manifest.json` and the `content/` folder at the root of a ZIP archive, then rename the archive extension from `.zip` to `.bl`.
+3. Open Bunny Loader, import the `.bl` package, and enable the mod.
+4. Start Terraria and enter your world.
 
-## 📂 Структура проекта
+**Note:** This repository currently contains the mod source. There is no packaged `.bl` file in the repository yet. TL Pro mod saves are not automatically converted to Bunny Loader format. Keep backups of your worlds before testing.
 
-- `content/Content/Items/` — руда, слитки, инструменты, меч и текстуры.
-- `content/Content/Tiles/` — резонитовый блок.
-- `content/Content/Projectiles/` — резонансная волна.
-- `content/Common/Players/` — скорость и рывок.
-- `content/Common/Systems/` — генерация руды после босса.
-- `content/Localization/` — перевод.
-- `manifest.json` и `content/main.js` — конфигурация и входная точка.
-- `dist/` — готовый к импорту архив мода.
+## Source layout
 
-## 🛠️ Разработка и проверка
+```text
+manifest.json
+content/
+  main.js
+  Common/
+    Players/          Movement boost and double-tap dash
+    Systems/          Ore generation logic
+  Content/
+    Items/            Ore, bars, tools, and sword
+    Projectiles/      Resonance wave
+    Tiles/            Resonite ore tile
+  Localization/
+    en-US.json
+    ru-RU.json
+```
 
-Это исходный код версии **1.5.2**, адаптированный под **Bunny Loader API v2**. Архив содержит текстуры, JavaScript-классы и переводы. Код и структура подготовлены, однако **полноценная работоспособность в Terraria пока не подтверждена**. Если руда не появляется или возникают ошибки, сообщите об этом через [Issues](https://github.com/ishak12ski-afk/ResoniteOre-BL/issues).
+## Development status
 
-## 👥 Авторы и благодарности
+ResoniteOre started as a TL Pro mod and was adapted to Bunny Loader API v2. The current source includes JavaScript gameplay classes and localization files, but a successful installation does not guarantee that every mechanic works correctly in Terraria.
 
-- **[ishak12ski-afk](https://github.com/ishak12ski-afk)** / **ResoniteOre team** — идея, разработка оригинального мода и развитие проекта.
-- **ChatGPT (OpenAI)** — помощь в написании кода, переносе с TL Pro на Bunny Loader, исправлениях и документации.
-- **[JonataOliveiraa](https://github.com/JonataOliveiraa/Bunny-Loader)** и участники Bunny Loader — за загрузчик и пример мода, использованный как справочник при переносе.
+If you find bugs, especially problems with ore generation or dashing, please [open an issue](https://github.com/ishak12ski-afk/ResoniteOre-BL/issues) and describe your Terraria and Bunny Loader versions.
 
-Спасибо всем, кто тестирует ResoniteOre и помогает находить ошибки! 💠
+## Credits
+
+- **[ishak12ski-afk](https://github.com/ishak12ski-afk) / ResoniteOre team** — original mod concept, development, and project maintenance.
+- **ChatGPT by OpenAI** — assistance with code, migration from TL Pro to Bunny Loader, troubleshooting, and documentation.
+- **[JonataOliveiraa](https://github.com/JonataOliveiraa/Bunny-Loader) and Bunny Loader contributors** — development of Bunny Loader and its example mod, which served as a reference for the port.
+
+Thanks to everyone who tests the mod and reports issues.
