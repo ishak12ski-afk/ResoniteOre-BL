@@ -37,12 +37,12 @@ manifest.json
 content/
   main.js
   Common/
-    Players/          Movement boost and double-tap dash
-    Systems/          Ore generation logic
+    Players/
+    Systems/
   Content/
-    Items/            Ore, bars, tools, and sword
-    Projectiles/      Resonance wave
-    Tiles/            Resonite ore tile
+    Items/
+    Projectiles/
+    Tiles/
   Localization/
     en-US.json
     ru-RU.json
