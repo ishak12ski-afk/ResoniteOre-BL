@@ -37,12 +37,12 @@ manifest.json
 content/
   main.js
   Common/
-    Players/          Bônus de movimento e investida por toque duplo
-    Systems/          Lógica de geração do minério
+    Players/
+    Systems/
   Content/
-    Items/            Minério, barras, ferramentas e espada
-    Projectiles/      Onda de ressonância
-    Tiles/            Bloco de minério de Resonite
+    Items/
+    Projectiles/
+    Tiles/
   Localization/
     en-US.json
     ru-RU.json
