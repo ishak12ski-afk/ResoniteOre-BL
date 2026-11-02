@@ -48,6 +48,7 @@ export class ResoniteSlash extends ModProjectile {
         const facing = proj.ai[2] >= 0 ? 1 : -1;
         let angle;
         let reach;
+        let retractScale = 1;
 
         if (stage === 0) {
             // Fast forward stab, tiny pause, then pull back.
@@ -79,6 +80,7 @@ export class ResoniteSlash extends ModProjectile {
             const k = smooth(++this.retractTick / 8);
             reach = this.retractStartReach + (5 - this.retractStartReach) * k;
             angle = this.retractStartAngle + (0.03 - this.retractStartAngle) * k;
+            retractScale = 1 - 0.78 * k;
             if (this.retractTick >= 8) { proj.Kill(); return; }
         }
 
@@ -92,7 +94,7 @@ export class ResoniteSlash extends ModProjectile {
             Vector2.Multiply(axis, reach * 0.32)
         );
         proj.rotation = worldAngle + Math.PI / 4; // The sprite points diagonally up-right.
-        proj.scale = 1; // Sword sprite never stretches or shrinks during a swing.
+        proj.scale = retractScale; // Full size during attacks; contracts only when released.
 
         // One large projectile exactly once, at the impact of the final blow.
         if (stage === 2 && t >= 0.54 && local[1] === 0) {
