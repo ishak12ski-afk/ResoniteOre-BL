@@ -85,7 +85,7 @@ export class ResoniteSlash extends ModProjectile {
                         Vector2.new(player.direction, 0)
                     );
                     NewProjectile(
-                        proj.GetSource_FromThis(),
+                        player.GetProjectileSource_Item(player.HeldItem),
                         Vector2.Add(player.Center, Vector2.Multiply(aim, 48)),
                         Vector2.Multiply(aim, 15),
                         burstType,
