@@ -1,4 +1,5 @@
-// Bunny Loader API v2; every second sword swing fires ResoniteWave.
+// Resonite sword: custom two-part slash combo and a wave on every second swing.
+// Bunny Loader API v2: UseStyle runs after Terraria's built-in use animation.
 
 const NewProjectile = Terraria.Projectile['int NewProjectile(IEntitySource spawnSource, Vector2 position, Vector2 velocity, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1, float ai2, NewProjectileModifier modifer)'];
 
@@ -12,18 +13,48 @@ export class ResoniteSword extends ModItem {
         this.Item.UseSound = Terraria.ID.SoundID.Item1;
     }
 
-    UseItem(item, player) {
-        // TL Pro calls UseItem repeatedly during an animation. Count only the first tick of each swing.
-        if (player.itemAnimation !== player.itemAnimationMax) return true;
+    // UseStyle is called each animation frame, after the vanilla style.
+    // Alternate an overhead cut with a returning upward slash.
+    // The regular melee collision and sword damage are preserved.
+    UseStyle(item, player, mountOffset, heldItemFrame) {
+        if (player.itemAnimation <= 0 || player.itemAnimationMax <= 0) return;
 
         const owner = player.whoAmI;
-        this.swingCounts ??= {};
+        const swing = this.swingCounts?.[owner] ?? 1;
+        const returningSlash = swing % 2 === 0;
+
+        // 0..1 over one real attack, even when melee speed changes.
+        const progress = Math.max(0, Math.min(1,
+            1 - player.itemAnimation / player.itemAnimationMax
+        ));
+        // Smoothly accelerate into the cut, then ease out.
+        const eased = progress * progress * (3 - 2 * progress);
+
+        // Two mirrored arcs, expressed as radians relative to facing direction.
+        // First cut: above the shoulder -> forward/down.
+        // Second cut: forward/down -> above the shoulder (backhand).
+        const angle = returningSlash
+            ? 1.15 - 2.50 * eased
+            : -1.75 + 2.70 * eased;
+
+        player.itemRotation = angle * player.direction * player.gravDir;
+
+        // Push the hilt slightly out from the hand near the middle of the arc.
+        // Keep the engine's hand position so this works with mounts and gravity.
+        const reach = Math.sin(progress * Math.PI) * 6;
+        const hand = player.itemLocation;
+        hand.X += player.direction * reach;
+        hand.Y -= player.gravDir * Math.sin(progress * Math.PI) * 2;
+    }
+
+    UseItem(item, player) {
+        // Bunny Loader calls UseItem once when a new swing starts.
+        const owner = player.whoAmI;
+        this.swingCounts ??= Object.create(null);
         this.swingCounts[owner] = (this.swingCounts[owner] ?? 0) + 1;
 
-        // Shoot exactly once every two sword swings.
+        // The second (returning) slash releases a resonance wave.
         if ((this.swingCounts[owner] % 2) !== 0) return true;
-
-        // Only the local player creates the projectile, avoiding duplicate spawns.
         if (owner !== Terraria.Main.myPlayer) return true;
 
         const from = player.Center;
@@ -31,8 +62,7 @@ export class ResoniteSword extends ModItem {
         let direction = Vector2.Subtract(mouse, from);
         direction = Vector2.SafeNormalize(direction, Vector2.new(player.direction, 0));
 
-        const speed = 10.5;
-        const velocity = Vector2.Multiply(direction, speed);
+        const velocity = Vector2.Multiply(direction, 10.5);
         const spawnPosition = Vector2.Add(from, Vector2.Multiply(direction, 26));
         const projectileType = ModProjectile.getTypeByName('ResoniteWave');
 
