@@ -4,7 +4,7 @@
 
 ResoniteOre é um mod para Terraria Mobile desenvolvido para o [Bunny Loader](https://github.com/JonataOliveiraa/Bunny-Loader). Ele adiciona um novo minério subterrâneo, um conjunto de ferramentas, uma espada e novas habilidades de movimentação.
 
-**Versão atual:** 1.6.0  
+**Versão atual:** 1.6.1  
 **Plataforma:** Terraria Mobile, Bunny Loader API v2  
 **Status:** Em desenvolvimento. Algumas funcionalidades ainda não foram verificadas dentro do jogo.
 
@@ -20,6 +20,8 @@ ResoniteOre é um mod para Terraria Mobile desenvolvido para o [Bunny Loader](ht
 - **Investida:** toque duas vezes rapidamente para a esquerda ou direita para avançar nessa direção, de forma semelhante ao Escudo de Cthulhu. A implementação atual usa uma janela de aproximadamente 0,42 segundo para o toque duplo e um tempo de recarga de 0,58 segundo.
 
 O mod contém localização dentro do jogo em inglês e russo. Esta página em português é uma tradução da documentação.
+
+- **Soltar o ataque:** a espada permanece estendida enquanto o botão é pressionado e recua suavemente ao soltá-lo. A lâmina gira a partir do cabo, e o projétil final usa a textura realinhada do ExampleMod.
 
 ## Instalação
 

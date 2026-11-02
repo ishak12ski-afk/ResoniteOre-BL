@@ -39,7 +39,7 @@ export class ResoniteSlash extends ModProjectile {
         const duration = Math.max(18, proj.ai[1]);
         const tick = ++local[0];
         const t = clamp01(tick / duration);
-        if (tick > duration || player.HeldItem.type !== ModItem.getTypeByName('ResoniteSword')) {
+        if (tick > duration + 8 || player.HeldItem.type !== ModItem.getTypeByName('ResoniteSword')) {
             proj.Kill();
             return;
         }
@@ -52,17 +52,34 @@ export class ResoniteSlash extends ModProjectile {
         if (stage === 0) {
             // Fast forward stab, tiny pause, then pull back.
             angle = -0.17 + 0.10 * smooth(t);
-            reach = 9 + 52 * fastOut(t / 0.26) - 24 * smooth((t - 0.35) / 0.30);
+            reach = 12 + 23 * fastOut(t / 0.24);
         } else if (stage === 1) {
             // A rapid low-to-high cut.
             angle = 1.34 - 2.63 * smooth((t - 0.08) / 0.48);
-            reach = 30 + 8 * Math.sin(Math.PI * t);
+            reach = 26 + 5 * Math.sin(Math.PI * t);
         } else {
             // Slow, conspicuous pullback followed by an explosive finishing arc.
             angle = t < 0.45
                 ? -0.55 - 1.58 * smooth(t / 0.45)
                 : -2.13 + 3.63 * fastOut((t - 0.45) / 0.23);
-            reach = t < 0.45 ? 17 + 10 * smooth(t / 0.45) : 35 + 8 * Math.sin(Math.PI * t);
+            reach = t < 0.45 ? 17 + 8 * smooth(t / 0.45) : 29 + 4 * Math.sin(Math.PI * t);
+        }
+
+        // Keep the blade fully extended while attack is held. When released,
+        // it slides smoothly into the hand instead of shrinking or vanishing.
+        if (player.controlUseItem === false) this.releaseRequested = true;
+        const minimumActive = stage === 2 ? 0.59 : (stage === 1 ? 0.38 : 0.25);
+        if (this.releaseRequested && !this.retracting && t >= minimumActive) {
+            this.retracting = true;
+            this.retractTick = 0;
+            this.retractStartReach = reach;
+            this.retractStartAngle = angle;
+        }
+        if (this.retracting) {
+            const k = smooth(++this.retractTick / 8);
+            reach = this.retractStartReach + (5 - this.retractStartReach) * k;
+            angle = this.retractStartAngle + (0.03 - this.retractStartAngle) * k;
+            if (this.retractTick >= 8) { proj.Kill(); return; }
         }
 
         // Translate mirrored angles to actual world space, including gravity flip.
@@ -70,9 +87,12 @@ export class ResoniteSlash extends ModProjectile {
         const axis = Vector2.new(Math.cos(worldAngle), Math.sin(worldAngle));
         const hand = player['Vector2 RotatedRelativePoint(Vector2 pos, bool reverseRotation, bool addGfxOffY, int pushFromOriginHack)'](player.MountedCenter, false, true, 0);
         proj.velocity = axis; // Stored for the custom line-shaped collision.
-        proj.Center = Vector2.Add(hand, Vector2.Multiply(axis, reach * 0.52));
+        proj.Center = Vector2.Add(
+            Vector2.Add(hand, Vector2.new(player.direction * 9, -player.gravDir * 2)),
+            Vector2.Multiply(axis, reach * 0.32)
+        );
         proj.rotation = worldAngle + Math.PI / 4; // The sprite points diagonally up-right.
-        proj.scale = stage === 2 ? 1.22 : 1;
+        proj.scale = 1; // Sword sprite never stretches or shrinks during a swing.
 
         // One large projectile exactly once, at the impact of the final blow.
         if (stage === 2 && t >= 0.54 && local[1] === 0) {
@@ -100,6 +120,7 @@ export class ResoniteSlash extends ModProjectile {
     }
 
     CanDamage(proj) {
+        if (this.retracting) return false;
         const stage = Math.round(proj.ai[0]);
         const time = new ProjAI(proj, true)[0] / Math.max(18, proj.ai[1]);
         if (stage === 0) return time >= 0.06 && time <= 0.43;
@@ -109,8 +130,8 @@ export class ResoniteSlash extends ModProjectile {
 
     Colliding(proj, projHitbox, targetHitbox) {
         if (!this.CanDamage(proj)) return false;
-        const start = Vector2.Subtract(proj.Center, Vector2.Multiply(proj.velocity, 12));
-        const end = Vector2.Add(proj.Center, Vector2.Multiply(proj.velocity, 37 * proj.scale));
+        const start = Vector2.Subtract(proj.Center, Vector2.Multiply(proj.velocity, 3));
+        const end = Vector2.Add(proj.Center, Vector2.Multiply(proj.velocity, 44 * proj.scale));
         const thickness = Math.round(13 * proj.scale);
         return LineHits(
             Vector2.new(targetHitbox.X, targetHitbox.Y),
@@ -121,7 +142,7 @@ export class ResoniteSlash extends ModProjectile {
 
     PreDraw(proj, lightColor) {
         const texture = TextureAssets.Projectile[this.Type].Value;
-        const origin = Vector2.new(texture.Width / 2, texture.Height / 2);
+        const origin = Vector2.new(10, 29); // Pivot at the sword grip, not its center.
         Main.spriteBatch['void Draw(Texture2D texture, Vector2 position, Nullable`1 sourceRectangle, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth)'](
             texture,
             Vector2.Subtract(proj.Center, Main.screenPosition),
