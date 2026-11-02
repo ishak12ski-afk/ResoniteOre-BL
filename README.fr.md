@@ -4,7 +4,7 @@
 
 ResoniteOre est un mod pour Terraria Mobile conçu pour [Bunny Loader](https://github.com/JonataOliveiraa/Bunny-Loader). Il ajoute un nouveau minerai souterrain, un ensemble d'outils, une épée et de nouvelles capacités de déplacement.
 
-**Version actuelle :** 1.5.3  
+**Version actuelle :** 1.6.0  
 **Plateforme :** Terraria Mobile, Bunny Loader API v2  
 **Statut :** En cours de développement. Certaines fonctionnalités n'ont pas encore été vérifiées en jeu.
 
@@ -15,7 +15,7 @@ ResoniteOre est un mod pour Terraria Mobile conçu pour [Bunny Loader](https://g
 - **Pioche en résonite :** puissance de minage de 75 %.
 - **Hache en résonite :** puissance de hache de 110 %.
 - **Marteau en résonite :** puissance de marteau de 80 %.
-- **Épée en résonite :** animation personnalisée avec deux coups alternés : une attaque descendante suivie d'un coup remontant. Le deuxième coup projette une onde de résonance.
+- **Épée en résonite :** enchaînement de trois attaques : une estocade rapide, un coup ascendant, puis une puissante préparation suivie d'un coup final rapide qui libère un grand projectile de résonance.
 - **Bonus de déplacement :** augmente la vitesse de déplacement de 20 %.
 - **Ruée :** appuyez rapidement deux fois sur la direction gauche ou droite pour effectuer une ruée, comme avec le Bouclier de Cthulhu. Le code actuel utilise un délai d'environ 0,42 seconde pour le double appui et un temps de recharge de 0,58 seconde.
 

@@ -4,7 +4,7 @@
 
 ResoniteOre is a Terraria Mobile mod built for [Bunny Loader](https://github.com/JonataOliveiraa/Bunny-Loader). It adds a new underground resource, a set of tools and a sword, and new movement abilities.
 
-**Current version:** 1.5.3  
+**Current version:** 1.6.0  
 **Platform:** Terraria Mobile, Bunny Loader API v2  
 **Status:** Work in progress. Some features have not yet been verified in-game.
 
@@ -15,7 +15,7 @@ ResoniteOre is a Terraria Mobile mod built for [Bunny Loader](https://github.com
 - **Resonite pickaxe:** 75% pickaxe power.
 - **Resonite axe:** 110% axe power.
 - **Resonite hammer:** 80% hammer power.
-- **Resonite sword:** Custom two-part swing combo: an overhead slash followed by a returning upward slash. Every second swing releases a resonance wave.
+- **Resonite sword:** A three-part combo: a sharp forward stab, a low-to-high slash, then a powerful windup and a fast finishing swing that launches an oversized resonance projectile.
 - **Movement boost:** Increases movement speed by 20%.
 - **Dash:** Double-tap left or right to dash in that direction, similar to the Shield of Cthulhu. The current implementation uses an approximately 0.42-second double-tap window and a 0.58-second cooldown.
 

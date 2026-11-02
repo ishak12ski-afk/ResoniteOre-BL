@@ -25,7 +25,7 @@ export class ResoniteSword extends ModItem {
         this.comboCounter = (this.comboCounter ?? 0) + 1;
         const stage = (this.comboCounter - 1) % 3;
         player.direction = Terraria.Main.MouseWorld.X < player.Center.X ? -1 : 1;
-        const facing = player.direction * player.gravDir;
+        const facing = player.direction;
 
         NewProjectile(
             player.GetProjectileSource_Item(item),
