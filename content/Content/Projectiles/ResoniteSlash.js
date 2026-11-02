@@ -39,7 +39,7 @@ export class ResoniteSlash extends ModProjectile {
         const duration = Math.max(18, proj.ai[1]);
         const tick = ++local[0];
         const t = clamp01(tick / duration);
-        if (tick > duration + 8 || player.HeldItem.type !== ModItem.getTypeByName('ResoniteSword')) {
+        if (tick > duration + 8 || (tick > duration && player.controlUseItem !== false) || player.HeldItem.type !== ModItem.getTypeByName('ResoniteSword')) {
             proj.Kill();
             return;
         }
