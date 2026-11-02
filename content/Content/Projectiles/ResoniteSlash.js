@@ -67,7 +67,7 @@ export class ResoniteSlash extends ModProjectile {
         }
 
         // Keep the blade fully extended while attack is held. When released,
-        // it slides smoothly into the hand instead of shrinking or vanishing.
+        // it slides and contracts into the hand instead of vanishing.
         if (player.controlUseItem === false) this.releaseRequested = true;
         const minimumActive = stage === 2 ? 0.59 : (stage === 1 ? 0.38 : 0.25);
         if (this.releaseRequested && !this.retracting && t >= minimumActive) {
